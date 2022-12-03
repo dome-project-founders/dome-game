@@ -1,0 +1,16 @@
+path:hover, .selected{
+    cursor: pointer;
+    fill: #27D89C;
+    stroke: black !important;
+    stroke-width:2px;
+    transform: scale(1.05);
+    transform-origin: 50% 50%;
+    transition:.3s;
+    transform-box: fill-box;
+}
+.selected {
+    fill: #27689C !important;
+}
+g {
+    stroke:black;
+}
