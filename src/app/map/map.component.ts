@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import axios from 'axios';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit {
 
+  Land: any;
   constructor() { }
 
   ngOnInit(): void {
@@ -25,6 +26,11 @@ export class MapComponent implements OnInit {
         path.classList.remove("selected");
       })
       event.target.classList.add("selected");
+      console.log(event.target.id);
+      let id = event.target.id.toString();
+      axios.get('http://localhost:3001/api/land/'+id).then((result) => {
+        this.Land = result.data;
+      })
       selected = event.target;
       if(selected != null) {
         svg?.appendChild(selected);

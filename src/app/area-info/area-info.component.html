@@ -1,6 +1,20 @@
-<div class="mr-8">
-  <div class="h-[20vh] bg-[#784800] border-[#492C00] border-8 border-b-4">
-    <span class="text-4xl"> Nom de la parcelle </span>
+<div *ngIf="Land" class="mr-8 text-white">
+  <div
+    class="h-[20vh] bg-[#784800] border-[#492C00] border-8 border-b-4 flex place-items-center justify-center"
+  >
+    <span class="text-4xl"> {{ Land.name }} </span>
   </div>
-  <div class="h-[60vh] bg-[#A7680A] border-[#492C00] border-8 border-t-4"></div>
+  <div class="h-[60vh] bg-[#A7680A] border-[#492C00] border-8 border-t-4 p-4">
+    <div class="flex flex-col">
+      <span class="text-xl mb-4"> Land informations </span>
+      <span> {{ Land.infos }}</span>
+    </div>
+    <div class="flex flex-col">
+      <span class="text-xl my-4"> Jobs available </span>
+      <div>
+        <span> {{ Land.skills[0] }}</span>
+        <span> {{ Land.skills[1] }}</span>
+      </div>
+    </div>
+  </div>
 </div>
