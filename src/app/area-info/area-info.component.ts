@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Lands } from 'src/model/Lands';
+import { LocationService } from '../services/location.service';
 
 @Component({
   selector: 'app-area-info',
@@ -9,13 +10,18 @@ import { Lands } from 'src/model/Lands';
 
 export class AreaInfoComponent implements OnChanges {
   @Input() Land!: Lands; 
+  @Input() Char!: any;
 
-  constructor() { }
+  constructor(private locationService: LocationService) { }
 
-  ngOnChanges(): void {
+  async ngOnChanges(): Promise<void> {
   }
 
   ngOnInit(): void {
   }
 
+  async travelClick(data: any) {
+      this.locationService.setLocation(this.Land.land_id);
+      this.Char = await this.locationService.getLocation();
+    }
 }

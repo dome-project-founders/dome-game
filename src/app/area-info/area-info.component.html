@@ -16,5 +16,16 @@
         <span> {{ Land.skills[1] }}</span>
       </div>
     </div>
+    <div
+      (click)="travelClick($event)"
+      class="text-center my-4"
+      *ngIf="Land.land_id != Char.location"
+    >
+      <span
+        class="text-xl text-black bg-beige p-4 px-12 rounded-lg border-cta border-4 border-opacity-50"
+        id="travel"
+        >Travel to this location</span
+      >
+    </div>
   </div>
 </div>
