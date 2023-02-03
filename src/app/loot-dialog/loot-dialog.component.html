@@ -5,9 +5,16 @@
   <div mat-dialog-content>
     <div class="flex">
       <div *ngFor="let loot of loots" class="h-[25rem] m-8 p-4 text-xl">
-        <div class="card {{ loot }}">
+        <div class="card {{ loot.item.rarity }}">
           <div>
-            {{ loot.charAt(0).toUpperCase() + loot.slice(1) }}
+            <div>
+              {{
+                loot.item.rarity.charAt(0).toUpperCase() +
+                  loot.item.rarity.slice(1)
+              }}
+              <img class="m-auto" src="{{ loot.item.image }}" />
+              {{ loot.item.name }}
+            </div>
           </div>
         </div>
       </div>

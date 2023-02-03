@@ -35,15 +35,18 @@ export class AreaInfoComponent implements OnChanges {
     this.action = null;
   }
   skillClick(data: any) {
-    axios.get('http://localhost:3001/api/loot/' + data).then((result) => {
+    axios.get('http://localhost:3001/api/action').then((result) => {
       this.actions = result.data;
       this.skill = data;
+      if(this.action) this.action.skill = "";
     });
   }
   actionClick(action: any) {
     this.odds = [];
     this.action = action;
-    Object.entries(this.action.rarity[0]).forEach(entry => {
+    this.action.skill = this.skill;
+    console.log(this.action);
+    Object.entries(this.action.rarity).forEach(entry => {
       const [key, value] = entry;
       this.odds.push({rarity:key,odds:value});
     });
@@ -58,26 +61,47 @@ export class AreaInfoComponent implements OnChanges {
     target?.scrollIntoView({behavior: 'smooth'});
   }
   startAction() {
-    this.loots = [];
-    for (let i = 0; i < this.action.amount; i++) {
-      let randomNumber = (Math.pow(10,14)*Math.random()*Math.random()%(100-0+1))+0;
-      let buffer = 0;
-      let actualDrop: any = null;
-      this.odds.forEach((element: any) => {
-        let tmp: any = element.odds*100;
-        buffer += tmp;
-        if(randomNumber <= buffer && !actualDrop) {
-          actualDrop = element.rarity;
-          this.loots.push(actualDrop);
-        }
-      });
-    }
-    const dialogRef = this.dialog.open(LootDialogComponent, {
-      data: this.loots,
+    let rarity: String[] = [];
+    this.odds.forEach((element: any) => {
+      rarity.push(element.rarity);
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    axios.post('http://localhost:3001/api/item/lootTable',{
+      data: {
+        skill:this.skill,
+        rarity: rarity
+      }
+    }).then((items: any) => {
+      this.loots = [];
+      for (let i = 0; i < this.action.amount; i++) {
+        let randomNumber = (Math.pow(10,14)*Math.random()*Math.random()%(100-0+1))+0;
+        let buffer = 0;
+        let actualDrop: any = null;
+        this.odds.forEach(async (element: any) => {
+          let tmp: any = element.odds*100;
+          buffer += tmp;
+          if(randomNumber <= buffer && !actualDrop) {
+            actualDrop = {};
+            actualDrop.rarity = element.rarity;
+            console.log("yes");
+            let itemsToLoot: any = [];
+            await items.data.forEach((item: any) => {
+              if (item.rarity == actualDrop.rarity) itemsToLoot.push(item);
+            });
+            console.log(itemsToLoot);
+            const randomIndex = Math.floor(Math.random() * itemsToLoot.length);
+            console.log(randomIndex);
+            actualDrop.item = itemsToLoot[randomIndex];
+            this.loots.push(actualDrop);
+          }
+        });
+      }
+      console.log(this.loots);
+      const dialogRef = this.dialog.open(LootDialogComponent, {
+        data: this.loots,
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
     });
   }
   
