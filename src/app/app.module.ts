@@ -7,9 +7,11 @@ import { AreaInfoComponent } from './area-info/area-info.component';
 import { MapComponent } from './map/map.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
+import { LootDialogComponent } from './loot-dialog/loot-dialog.component';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog'
 
 @NgModule({
   declarations: [
@@ -17,15 +19,20 @@ import { ReactiveFormsModule } from '@angular/forms';
     AreaInfoComponent,
     MapComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    LootDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [
+    MatDialog
+  ],
+  entryComponents: [LootDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

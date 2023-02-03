@@ -4,21 +4,38 @@
   >
     <span class="text-4xl"> {{ Land.name }} </span>
   </div>
-  <div class="h-[60vh] bg-[#A7680A] border-[#492C00] border-8 border-t-4 p-4">
+  <div
+    class="h-[60vh] bg-[#A7680A] border-[#492C00] border-8 border-t-4 p-4 overflow-auto"
+  >
     <div class="flex flex-col">
       <span class="text-xl mb-4"> Land informations </span>
       <span> {{ Land.infos }}</span>
     </div>
     <div class="flex flex-col">
       <span class="text-xl my-4"> Jobs available </span>
-      <div>
-        <span> {{ Land.skills[0] }}</span>
-        <span> {{ Land.skills[1] }}</span>
+      <div class="flex justify-around text-center mb-4">
+        <ng-container *ngIf="Land.land_id != Char.location">
+          <div
+            *ngFor="let skill of Land.skills"
+            class="py-16 w-1/3 bg-cta cursor-pointer"
+          >
+            <span> {{ skill }}</span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="Land.land_id == Char.location">
+          <div
+            *ngFor="let skill of Land.skills"
+            (click)="skillClick(skill)"
+            class="py-16 w-1/3 bg-cta cursor-pointer border-beige border-2 border-opacity-50"
+          >
+            <span> {{ skill }}</span>
+          </div>
+        </ng-container>
       </div>
     </div>
     <div
       (click)="travelClick($event)"
-      class="text-center my-4"
+      class="text-center my-4 cursor-pointer"
       *ngIf="Land.land_id != Char.location"
     >
       <span
@@ -26,6 +43,37 @@
         id="travel"
         >Travel to this location</span
       >
+    </div>
+    <div
+      class="text-center my-4 cursor-pointer"
+      *ngIf="skill && Land.land_id == Char.location"
+    >
+      <div class="text-xl mb-4">
+        <span> {{ skill }}</span>
+      </div>
+      <div class="flex flex-wrap place-content-center">
+        <span
+          *ngFor="let action of actions"
+          (click)="actionClick(action)"
+          class="text-xl text-black bg-beige w-[30%] rounded-lg border-cta border-4 border-opacity-50 m-1 time"
+          id="{{ action.time }}"
+        >
+          {{ action.time }}
+        </span>
+      </div>
+      <div
+        (click)="startAction()"
+        class="text-center my-8 cursor-pointer flex flex-col"
+        *ngIf="action && action.skill == skill"
+      >
+        <!--<div class="text-xl text-center text-black">
+          <span *ngFor="let odd of odds"> {{ odd.odds * 100 }}%</span>
+        </div>-->
+        <span
+          class="text-xl text-black bg-beige p-4 px-12 rounded-lg border-cta border-4 border-opacity-50"
+          >Start: {{ action.skill }}
+        </span>
+      </div>
     </div>
   </div>
 </div>

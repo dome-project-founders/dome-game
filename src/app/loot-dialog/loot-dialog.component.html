@@ -1,0 +1,19 @@
+<div
+  class="p-4 bg-[#492C00] border-[#A7680A] border-8 border-t-4 w-[60rem] text-center text-white"
+>
+  <div class="text-3xl">Your loot</div>
+  <div mat-dialog-content>
+    <div class="flex">
+      <div *ngFor="let loot of loots" class="h-[25rem] m-8 p-4 text-xl">
+        <div class="card {{ loot }}">
+          <div>
+            {{ loot.charAt(0).toUpperCase() + loot.slice(1) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="text-2xl">Click to close</div>
+  </div>
+</div>

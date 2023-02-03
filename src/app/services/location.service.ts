@@ -11,7 +11,7 @@ export class LocationService {
   Char: any;
 
   async getLocation() {
-    //sessionStorage.setItem("username","Panda");
+    sessionStorage.setItem("username","Panda");
     const response = await axios.get('http://localhost:3001/api/char/'+sessionStorage.getItem("username"));
     let previousLocation = document.getElementsByClassName('location');
     for (let i = 0; i < previousLocation.length; i++) {
