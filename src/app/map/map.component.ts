@@ -12,36 +12,35 @@ export class MapComponent implements OnInit {
 
   Land: any;
   Char: any;
-  constructor(public locationService: LocationService) { }
+  constructor(public locationService: LocationService) { 
+    document.body.className = "bodybg";
+  }
 
   async ngOnInit(): Promise<void> {
     this.Char = await this.locationService.getLocation();
-
-    let svg = document.querySelector("g");
+    let svg = document.querySelectorAll("g g");
     let selected: any = null;
-    svg?.addEventListener('mouseover', (event: any) => {
-      svg?.appendChild(event.target);
-      if(selected != null) {
-        svg?.appendChild(selected);
-      }
-    });
 
     //Event onClick land
-    svg?.addEventListener('click', (event: any) => {
-      let paths = document.querySelectorAll("path");
-      paths.forEach(path => {
-        path.classList.remove("selected");
-      })
-      event.target.classList.add("selected");
-      let id = event.target.id.toString();
-      axios.get('http://localhost:3001/api/land/'+id).then((result) => {
-        this.Land = result.data;
-      })
-      selected = event.target;
-      if(selected != null) {
-        svg?.appendChild(selected);
-      }
-    });
+    svg?.forEach(svg => {
+      svg.addEventListener('click', (event: any) => {
+        let paths = document.querySelectorAll("g g path");
+        let circles = document.querySelectorAll("g g circle");
+        paths.forEach(path => {
+          path.classList.remove("selected");
+        })
+        circles.forEach(circle => {
+          circle.classList.remove("selected");
+        })
+        event.target.classList.add("selected");
+        let id = event.target.id.toString();
+        axios.get('http://localhost:3001/api/land/'+id).then((result) => {
+          this.Land = result.data;
+        })
+        selected = event.target;
+      });
+    })
 
   }
+  
 }

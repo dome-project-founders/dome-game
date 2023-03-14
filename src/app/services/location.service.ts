@@ -12,7 +12,8 @@ export class LocationService {
 
   async getLocation() {
     sessionStorage.setItem("username","Panda");
-    const response = await axios.get('http://localhost:3001/api/char/'+sessionStorage.getItem("username"));
+    sessionStorage.setItem("userId","6391aafb99128bbd721012ed");
+    const response = await axios.get('http://localhost:3001/api/char/'+sessionStorage.getItem("userId"));
     let previousLocation = document.getElementsByClassName('location');
     for (let i = 0; i < previousLocation.length; i++) {
       const element = previousLocation[i];
@@ -25,8 +26,8 @@ export class LocationService {
   }
 
   async setLocation(data: any) {
-    let username = sessionStorage.getItem("username");
+    let userId = sessionStorage.getItem("userId");
     let location = {location: data}
-    const response = await axios.put('http://localhost:3001/api/char/location/'+username, location);
+    const response = await axios.put('http://localhost:3001/api/char/location/'+userId, location);
   }
 }

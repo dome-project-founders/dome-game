@@ -37,6 +37,13 @@ export class AreaInfoComponent implements OnChanges {
   skillClick(data: any) {
     axios.get('http://localhost:3001/api/action').then((result) => {
       this.actions = result.data;
+      this.actions .sort(function compare(a: { action: string; }, b: { action: string; }) {
+        if (a.action < b.action)
+           return -1;
+        if (a.action > b.action )
+           return 1;
+        return 0;
+      });
       this.skill = data;
       if(this.action) this.action.skill = "";
     });

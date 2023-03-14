@@ -1,19 +1,51 @@
-path:hover, .selected{
+path:hover, path.selected {
     cursor: pointer;
     fill: #27D89C;
     stroke: black !important;
     stroke-width:2px;
-    transform: scale(1.05);
-    transform-origin: 50% 50%;
-    transition:.3s;
-    transform-box: fill-box;
+    opacity: 0.3!important;
 }
+
 .selected {
     fill: #27689C !important;
 }
-.location {
+
+.location g path, .location g circle {
     fill: #D7263D !important;
 }
+.location g path {
+    opacity: 0.3 !important;
+}
+.location g circle {
+    opacity: 1 !important;
+}
+
 g {
     stroke:black;
+}
+
+circle {
+    fill:rgb(255, 209, 156)
+}
+circle:hover {
+    cursor: pointer;
+    fill: #27D89C !important;
+    stroke: black !important;
+    stroke-width:2px;
+}
+path:hover{
+    cursor: pointer;
+    fill: #27D89C;
+    stroke: black !important;
+    stroke-width:2px;
+    opacity: 0.3 !important;
+}
+
+img {
+    position: absolute;
+}
+
+svg {
+    position: absolute;
+    top:0;
 }
