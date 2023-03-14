@@ -11,7 +11,8 @@ import { LootDialogComponent } from './loot-dialog/loot-dialog.component';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule, MatDialog } from '@angular/material/dialog'
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { InventoryComponent } from './inventory/inventory.component'
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog'
     HeaderComponent,
     LoginComponent,
     LootDialogComponent,
+    InventoryComponent,
   ],
   imports: [
     BrowserModule,
