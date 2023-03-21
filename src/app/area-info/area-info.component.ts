@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Lands } from 'src/model/Lands';
-import { LocationService } from '../services/location.service';
+import { LocationService } from '../services/location/location.service';
 import axios from 'axios';
 import { MatDialog } from '@angular/material/dialog';
 import { LootDialogComponent } from '../loot-dialog/loot-dialog.component';
@@ -94,9 +94,7 @@ export class AreaInfoComponent implements OnChanges {
             await items.data.forEach((item: any) => {
               if (item.rarity == actualDrop.rarity) itemsToLoot.push(item);
             });
-            console.log(itemsToLoot);
             const randomIndex = Math.floor(Math.random() * itemsToLoot.length);
-            console.log(randomIndex);
             actualDrop.item = itemsToLoot[randomIndex];
             this.loots.push(actualDrop);
           }

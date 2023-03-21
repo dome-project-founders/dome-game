@@ -6,9 +6,10 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     background-color: #ADDBB9;
-}
-.bodybg {
     background-image: url("assets/images/background.png");
+}
+html {
+    overflow: hidden;
 }
 mat-dialog-container {
     background-color: greenyellow !important;

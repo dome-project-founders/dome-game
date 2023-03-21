@@ -1,7 +1,7 @@
 import { getLocaleDirection } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
-import { LocationService } from '../services/location.service';
+import { LocationService } from '../services/location/location.service';
 
 @Component({
   selector: 'app-map',
