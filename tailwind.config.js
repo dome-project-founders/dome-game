@@ -18,8 +18,15 @@ module.exports = {
       'fond-bright':"#ADDBB9",
       'black': "#000000",
       'fond-bright':"#ADDBB9",
+      'item-bg':"#A2541E",
+      'item-border':"#5B3100",
     },
     extend: {},
   },
   plugins: [],
+  safelist: [{
+    pattern: /border-(common|uncommon|rare|epic|legendary|mythic)/
+}
+
+]
 }
