@@ -1,1 +1,28 @@
-<div *ngFor="let item of itemsData">{{ item.name }} {{ item.count }}</div>
+<div class="flex">
+  <div id="user-info" class="w-[30%] flex flex-col">
+    <div
+      id="name"
+      class="text-center w-3/4 self-center bg-item-bg border-item-border border-4"
+    >
+      Panda
+    </div>
+    <div></div>
+  </div>
+  <div id="inventory" class="w-[70%] flex flex-col">
+    <div class="w-4/5 self-center bg-item-border">
+      <div class="w-[45%] m-[2.5%]">
+        <div
+          id="item-list"
+          class="py-4 place-items-center bg-item-bg border-item-border border-4 gap-4 flex flex-wrap justify-center overflow-auto max-h-[60vh]"
+        >
+          <app-item-box
+            *ngFor="let item of itemsData"
+            [item]="item"
+            (click)="getItemInfo(item)"
+          ></app-item-box>
+        </div>
+      </div>
+      <div id="item-view" class="w-[45%]"></div>
+    </div>
+  </div>
+</div>

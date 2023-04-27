@@ -17,4 +17,7 @@ export class InventoryComponent implements OnChanges {
     this.itemsData = await this.inventoryService.getInventory();
     console.log(this.itemsData);
   }
+  getItemInfo(item: any) {
+    console.log(item);
+  }
 }

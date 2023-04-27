@@ -20,6 +20,7 @@ export class LootDialogComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     let loots: any[] = [];
     this.data.forEach((element: any) => {
+      console.log(this.data);
       loots.push(element.item._id);
     });
     let itemsLooted = await axios.post('http://localhost:3001/api/item/inventory',loots);
