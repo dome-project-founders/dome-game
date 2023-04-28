@@ -1,7 +1,7 @@
 <div class="flex h-[100vh] items-center justify-center">
-  <div class="bg-fond-dark rounded-lg">
+  <div class="bg-fond-dark rounded-lg lg:w-[40%]">
     <form
-      class="flex flex-col mx-20"
+      class="flex flex-col m-20"
       [formGroup]="formdata"
       (ngSubmit)="onClickSubmit(formdata.value)"
     >
@@ -9,6 +9,7 @@
       <input
         class="rounded-lg h-12 my-3 p-3 bg-white"
         name="email"
+        type="email"
         placeholder="Email"
         formControlName="email"
       />
@@ -16,10 +17,35 @@
       <input
         class="rounded-lg h-12 my-3 p-3 bg-white"
         name="password"
+        type="password"
         placeholder="Password"
         formControlName="password"
       />
-      <input class="text-white" type="submit" value="Login" />
+      <div class="text-end">
+        <span class="text-white"
+          >Forgot your password ?
+          <a [routerLink]="['/resetPassword']" class="text-beige underline"
+            >Reset my password</a
+          ></span
+        >
+      </div>
+      <div class="my-4">
+        <input type="checkbox" id="stay" />
+        <label for="stay" class="text-white">Stay logged in</label>
+      </div>
+      <input
+        class="text-cta bg-beige w-fit self-center p-6 rounded-lg my-4"
+        type="submit"
+        value="Login"
+      />
+      <div class="text-end">
+        <span class="text-white"
+          >Still don't have an account ?
+          <a [routerLink]="['/register']" class="text-beige underline">
+            Register here
+          </a></span
+        >
+      </div>
     </form>
   </div>
 </div>

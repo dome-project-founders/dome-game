@@ -49,3 +49,7 @@ svg {
     position: absolute;
     top:0;
 }
+app-header {
+    z-index:10;
+    position: sticky;
+}

@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'dome-game';
+  currentURL: any;
+  title = 'Dome';
+  ngOnInit() {
+    this.currentURL = window.location.href;
+    console.log(this.currentURL);
+  }
 }

@@ -13,7 +13,10 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { InventoryComponent } from './inventory/inventory.component';
-import { ItemBoxComponent } from './item-box/item-box.component'
+import { ItemBoxComponent } from './item-box/item-box.component';
+import { ItemInventoryInfoComponent } from './item-inventory-info/item-inventory-info.component';
+import { RegisterComponent } from './register/register.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component'
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { ItemBoxComponent } from './item-box/item-box.component'
     LootDialogComponent,
     InventoryComponent,
     ItemBoxComponent,
+    ItemInventoryInfoComponent,
+    RegisterComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

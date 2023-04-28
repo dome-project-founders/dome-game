@@ -8,6 +8,7 @@ import { InventoryService } from '../services/inventory/inventory.service';
 })
 export class InventoryComponent implements OnChanges {
   itemsData: any;
+  itemInfo: any;
   constructor(private inventoryService: InventoryService) {
    }
 
@@ -18,6 +19,7 @@ export class InventoryComponent implements OnChanges {
     console.log(this.itemsData);
   }
   getItemInfo(item: any) {
+    this.itemInfo = item;
     console.log(item);
   }
 }

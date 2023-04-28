@@ -1,0 +1,15 @@
+<div *ngIf="item" class="flex flex-col items-center w-[100%]">
+  <div
+    class="bg-item-bg border-{{
+      item.rarity
+    }} border-4 w-[90%] max-w-[300px] overflow-hidden rounded-lg"
+  >
+    <img src="{{ item.image[0] }}" />
+  </div>
+  <div
+    class="text-center mt-8 w-[90%] border-item-border border-solid border-4 p-4 rounded-lg"
+  >
+    <p class="text-white text-2xl">{{ item.name }}</p>
+    <p class="mt-4 text-justify text-white text-base">{{ item.description }}</p>
+  </div>
+</div>
