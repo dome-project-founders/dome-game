@@ -1,1 +1,90 @@
-<p>register works!</p>
+<div class="flex h-[100vh] items-center justify-center">
+  <div class="bg-fond-dark rounded-lg lg:w-[40%]">
+    <form
+      class="flex flex-col m-20"
+      [formGroup]="formdata"
+      (ngSubmit)="onClickSubmit(formdata.value)"
+    >
+      <label for="username" class="text-white">Choose your username</label>
+      <input
+        class="rounded-lg h-12 my-3 p-3 bg-white"
+        name="username"
+        type="text"
+        placeholder="Username"
+        formControlName="username"
+      />
+      <span *ngIf="username" class="text-[#FF8A8A] mb-4"
+        >This username as already been taken</span
+      >
+      <label for="email" class="text-white">Email address</label>
+      <input
+        class="rounded-lg h-12 my-3 p-3 bg-white"
+        name="email"
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+      />
+      <span *ngIf="takenEmail" class="text-[#FF8A8A] mb-4"
+        >This email as already been taken</span
+      >
+      <span *ngIf="email" class="text-[#FF8A8A] mb-4"
+        >Your email must be a valid email address</span
+      >
+      <label for="confirmEmail" class="text-white"
+        >Confirm your email address</label
+      >
+      <input
+        class="rounded-lg h-12 my-3 p-3 bg-white"
+        name="confirmEmail"
+        type="email"
+        placeholder="Confirm Email"
+        formControlName="confirmEmail"
+      />
+      <span *ngIf="confirmEmail" class="text-[#FF8A8A] mb-4"
+        >Both emails does not match</span
+      >
+      <label for="password" class="text-white">Password</label>
+      <input
+        class="rounded-lg h-12 my-3 p-3 bg-white"
+        name="password"
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <div *ngIf="password" class="text-[#FF8A8A] mb-4">
+        <span>Your password must contain at least:</span>
+        <ul class="ml-6">
+          <li>- 8 characters</li>
+          <li>- 1 uppercase</li>
+          <li>- 1 lowercase</li>
+          <li>- 1 number</li>
+          <li>- 1 symbol (ex: "*","$","-","_","%", ...)</li>
+        </ul>
+      </div>
+      <label for="confirmPassword" class="text-white">Confirm password</label>
+      <input
+        class="rounded-lg h-12 my-3 p-3 bg-white"
+        name="confirmPassword"
+        type="password"
+        placeholder="Confirm Password"
+        formControlName="confirmPassword"
+      />
+      <span *ngIf="confirmPassword" class="text-[#FF8A8A] mb-4"
+        >Both passwords does not match</span
+      >
+      <input
+        class="text-cta bg-beige w-fit self-center p-6 rounded-lg my-4"
+        type="submit"
+        value="Register"
+      />
+      <div class="text-center">
+        <span class="text-white"
+          >Already have an account ?
+          <a [routerLink]="['/login']" class="text-beige underline">
+            Log in
+          </a></span
+        >
+      </div>
+    </form>
+  </div>
+</div>

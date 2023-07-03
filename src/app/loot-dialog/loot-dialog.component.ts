@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import axios from 'axios';
 import { InventoryService } from '../services/inventory/inventory.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-loot-dialog',
@@ -20,10 +21,10 @@ export class LootDialogComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     let loots: any[] = [];
     this.data.forEach((element: any) => {
-      console.log(this.data);
+      //console.log(this.data);
       loots.push(element.item._id);
     });
-    let itemsLooted = await axios.post('http://localhost:3001/api/item/inventory',loots);
+    let itemsLooted = await axios.post(environment.urlApi+'item/inventory',loots);
     let counts: any = {}
     loots.forEach(function(x) {
       counts[x] = (counts[x] || 0) +1;
@@ -33,6 +34,9 @@ export class LootDialogComponent implements OnInit {
       itemsLooted.data.find((item: any) => item._id == key).count = counts[key];
     });
     this.inventoryService.setInventory(itemsLooted.data);
+  }
+  closeModal() {
+    this.dialogRef.close();
   }
 
 }

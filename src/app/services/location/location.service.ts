@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,7 @@ export class LocationService {
   Char: any;
 
   async getLocation() {
-    sessionStorage.setItem("username","Panda");
-    sessionStorage.setItem("userId","6391aafb99128bbd721012ed");
-    const response = await axios.get('http://localhost:3001/api/char/'+sessionStorage.getItem("userId"));
+    const response = await axios.get(environment.urlApi+'char/'+sessionStorage.getItem("userId"));
     let previousLocation = document.getElementsByClassName('location');
     for (let i = 0; i < previousLocation.length; i++) {
       const element = previousLocation[i];
@@ -28,6 +27,6 @@ export class LocationService {
   async setLocation(data: any) {
     let userId = sessionStorage.getItem("userId");
     let location = {location: data}
-    const response = await axios.put('http://localhost:3001/api/char/location/'+userId, location);
+    const response = await axios.put(environment.urlApi+'char/location/'+userId, location);
   }
 }

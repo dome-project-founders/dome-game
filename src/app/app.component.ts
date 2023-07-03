@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'Dome';
   ngOnInit() {
     this.currentURL = window.location.href;
-    console.log(this.currentURL);
+    //console.log(this.currentURL);
   }
 }

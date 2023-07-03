@@ -4,6 +4,7 @@ import { LocationService } from '../services/location/location.service';
 import axios from 'axios';
 import { MatDialog } from '@angular/material/dialog';
 import { LootDialogComponent } from '../loot-dialog/loot-dialog.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-area-info',
@@ -29,13 +30,13 @@ export class AreaInfoComponent implements OnChanges {
   }
 
   async travelClick(data: any) {
-    this.locationService.setLocation(this.Land.land_id);
+    await this.locationService.setLocation(this.Land.land_id);
     this.Char = await this.locationService.getLocation();
     this.skill = null;
     this.action = null;
   }
-  skillClick(data: any) {
-    axios.get('http://localhost:3001/api/action').then((result) => {
+  async skillClick(data: any) {
+    await axios.get(environment.urlApi+'action').then((result) => {
       this.actions = result.data;
       this.actions .sort(function compare(a: { action: string; }, b: { action: string; }) {
         if (a.action < b.action)
@@ -52,7 +53,6 @@ export class AreaInfoComponent implements OnChanges {
     this.odds = [];
     this.action = action;
     this.action.skill = this.skill;
-    console.log(this.action);
     Object.entries(this.action.rarity).forEach(entry => {
       const [key, value] = entry;
       this.odds.push({rarity:key,odds:value});
@@ -64,7 +64,6 @@ export class AreaInfoComponent implements OnChanges {
     let selected = document.getElementById(action.time);
     selected?.classList.remove("bg-beige");
     let target = document.getElementById('start');
-    console.log(target);
     target?.scrollIntoView({behavior: 'smooth'});
   }
   startAction() {
@@ -72,7 +71,7 @@ export class AreaInfoComponent implements OnChanges {
     this.odds.forEach((element: any) => {
       rarity.push(element.rarity);
     });
-    axios.post('http://localhost:3001/api/item/lootTable',{
+    axios.post(environment.urlApi+'item/lootTable',{
       data: {
         skill:this.skill,
         rarity: rarity
@@ -89,7 +88,7 @@ export class AreaInfoComponent implements OnChanges {
           if(randomNumber <= buffer && !actualDrop) {
             actualDrop = {};
             actualDrop.rarity = element.rarity;
-            console.log("yes");
+            //console.log("yes");
             let itemsToLoot: any = [];
             await items.data.forEach((item: any) => {
               if (item.rarity == actualDrop.rarity) itemsToLoot.push(item);
@@ -100,12 +99,12 @@ export class AreaInfoComponent implements OnChanges {
           }
         });
       }
-      console.log(this.loots);
+      //console.log(this.loots);
       const dialogRef = this.dialog.open(LootDialogComponent, {
         data: this.loots,
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+        //console.log('The dialog was closed');
       });
     });
   }

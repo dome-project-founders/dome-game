@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="flex">
-  <div class="w-[70%] flex">
+  <div class="w-[70%] flex h-[80vh]">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -9,6 +9,7 @@
       height="1080"
       viewBox="0 0 1080 1080"
       xml:space="preserve"
+      class="h-auto m-auto"
     >
       <g
         transform="matrix(1 0 0 1 540 540)"
@@ -532,7 +533,7 @@
   </div>
   <div class="w-[30%]">
     <app-area-info
-      class="overflow-scroll"
+      class="overflow-scroll fixed"
       [Land]="Land"
       [Char]="Char"
     ></app-area-info>

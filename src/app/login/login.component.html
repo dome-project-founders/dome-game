@@ -1,4 +1,5 @@
-<div class="flex h-[100vh] items-center justify-center">
+<div class="flex h-[100vh] items-center justify-center flex-col">
+  <h1 class="text-4xl m-8">Welcome to Dome Reborn</h1>
   <div class="bg-fond-dark rounded-lg lg:w-[40%]">
     <form
       class="flex flex-col m-20"
@@ -21,10 +22,10 @@
         placeholder="Password"
         formControlName="password"
       />
-      <div class="text-end">
+      <div class="text-center">
         <span class="text-white"
           >Forgot your password ?
-          <a [routerLink]="['/resetPassword']" class="text-beige underline"
+          <a [routerLink]="['/reset-password']" class="text-beige underline"
             >Reset my password</a
           ></span
         >
@@ -38,7 +39,7 @@
         type="submit"
         value="Login"
       />
-      <div class="text-end">
+      <div class="text-center">
         <span class="text-white"
           >Still don't have an account ?
           <a [routerLink]="['/register']" class="text-beige underline">

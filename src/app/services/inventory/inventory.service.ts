@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +12,12 @@ export class InventoryService {
   async getInventory() {
     let itemsData: any;
     let inventoryData: any;
-    inventoryData = await axios.get('http://localhost:3001/api/inventory/'+sessionStorage.getItem("userId"));
-    console.log(inventoryData);
+    inventoryData = await axios.get(environment.urlApi+'inventory/'+sessionStorage.getItem("userId"));
     let itemIds: any[] = [];
     inventoryData.data.items.forEach((item: any) => {
-      console.log(item);
       itemIds.push(item._id);
     });
-    console.log(itemIds);
-    itemsData = await axios.post('http://localhost:3001/api/item/inventory',itemIds);
-    console.log(itemsData);
+    itemsData = await axios.post(environment.urlApi+'item/inventory',itemIds);
     for (let i = 0; i < itemsData.data.length; i++) {
       itemsData.data[i].count = inventoryData.data.items[i].count;
     }
@@ -40,7 +37,7 @@ export class InventoryService {
       let tmp: any = {}
       tmp._id = item._id;
       tmp.count = item.count;
-      console.log(tmp);
+      //console.log(tmp);
       let isInInventory = false;
       let idCount: any;
       let idItem: any;
@@ -52,13 +49,13 @@ export class InventoryService {
         }
       });
       if(isInInventory) {
-        console.log(finalInventory.find((item)=> item._id == idItem).count,idCount);
+        //console.log(finalInventory.find((item)=> item._id == idItem).count,idCount);
         finalInventory.find((item)=> item._id == idItem).count += idCount;
       } else {
         finalInventory.push(tmp);
       }
     });
-    console.log(finalInventory);
-    await axios.post('http://localhost:3001/api/inventory/'+sessionStorage.getItem("userId"),finalInventory);
+    //console.log(finalInventory);
+    await axios.post(environment.urlApi+'inventory/'+sessionStorage.getItem("userId"),finalInventory);
   }
 }

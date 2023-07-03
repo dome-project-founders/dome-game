@@ -6,6 +6,7 @@
   </div>
   <div
     class="h-[60vh] bg-[#A7680A] border-[#492C00] border-8 border-t-4 p-4 overflow-auto"
+    id="landInfos"
   >
     <div class="flex flex-col">
       <span class="text-xl mb-4"> Land informations </span>
@@ -26,7 +27,7 @@
           <div
             *ngFor="let skill of Land.skills"
             (click)="skillClick(skill)"
-            class="py-16 w-1/3 bg-cta cursor-pointer border-beige border-2 border-opacity-50"
+            class="py-16 w-1/3 bg-cta cursor-pointer border-beige border-2 border-opacity-50 hover:border-x-8"
           >
             <span> {{ skill }}</span>
           </div>
@@ -38,11 +39,12 @@
       class="text-center my-4 cursor-pointer"
       *ngIf="Land.land_id != Char.location"
     >
-      <span
-        class="text-xl text-black bg-beige p-4 px-12 rounded-lg border-cta border-4 border-opacity-50"
+      <p
+        class="text-xl text-black bg-beige p-4 px-12 rounded-lg border-cta border-4 border-opacity-50 hover:border-x-8"
         id="travel"
-        >Travel to this location</span
       >
+        Travel to this location
+      </p>
     </div>
     <div
       class="text-center my-4 cursor-pointer"
@@ -55,7 +57,7 @@
         <span
           *ngFor="let action of actions"
           (click)="actionClick(action)"
-          class="text-xl text-black bg-beige w-[30%] rounded-lg border-cta border-4 border-opacity-50 m-1 time"
+          class="text-xl text-black bg-beige w-[30%] rounded-lg border-cta border-4 border-opacity-50 m-1 time hover:border-x-8"
           id="{{ action.time }}"
         >
           {{ action.time }}
@@ -70,7 +72,7 @@
           <span *ngFor="let odd of odds"> {{ odd.odds * 100 }}%</span>
         </div>-->
         <span
-          class="text-xl text-black bg-beige p-4 px-12 rounded-lg border-cta border-4 border-opacity-50"
+          class="text-xl text-black bg-beige p-4 px-12 rounded-lg border-cta border-4 border-opacity-50 hover:border-x-8"
           >Start: {{ action.skill }}
         </span>
       </div>

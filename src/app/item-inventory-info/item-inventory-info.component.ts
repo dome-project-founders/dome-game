@@ -9,10 +9,8 @@ export class ItemInventoryInfoComponent {
   @Input() item: any;
 
   ngOnChanges() {
-    console.log("Component",this.item);
   }
 
   ngOnInit() {
-    console.log(this.item);
   }
 }

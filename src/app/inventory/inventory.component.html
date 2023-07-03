@@ -12,10 +12,18 @@
   <div id="inventory" class="w-[100%] flex flex-col">
     <div class="w-4/5 self-center bg-item-border flex rounded-lg">
       <div class="w-[45%] m-[2.5%]">
+        <div class="text-white text-center text-xl">Items</div>
         <div
           id="item-list"
           class="py-4 place-items-center bg-item-bg border-item-border border-4 gap-4 flex flex-wrap justify-center overflow-auto max-h-[60vh] rounded-lg"
         >
+          <div
+            *ngIf="!(itemsData?.length > 0)"
+            class="text-white text-center text-l"
+          >
+            Oh ? Nothing there ! Try collecting some resources then come back
+            later !
+          </div>
           <app-item-box
             *ngFor="let item of itemsData"
             [item]="item"
