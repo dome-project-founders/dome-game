@@ -1,0 +1,52 @@
+<div class="flex h-[100vh] items-center justify-center flex-col">
+  <h1 class="text-4xl m-8">Welcome to Dome Reborn</h1>
+  <div class="bg-fond-dark rounded-lg lg:w-[40%]">
+    <form
+      class="flex flex-col m-20"
+      [formGroup]="formdata"
+      (ngSubmit)="onClickSubmit(formdata.value)"
+    >
+      <label for="email" class="text-white">Email address</label>
+      <input
+        class="rounded-lg h-12 my-3 p-3 bg-white"
+        name="email"
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+      />
+      <label for="password" class="text-white">Password</label>
+      <input
+        class="rounded-lg h-12 my-3 p-3 bg-white"
+        name="password"
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <div class="text-center">
+        <span class="text-white"
+          >Forgot your password ?
+          <a [routerLink]="['/reset-password']" class="text-beige underline"
+            >Reset my password</a
+          ></span
+        >
+      </div>
+      <div class="my-4">
+        <input type="checkbox" id="stay" />
+        <label for="stay" class="text-white">Stay logged in</label>
+      </div>
+      <input
+        class="text-cta bg-beige w-fit self-center p-6 rounded-lg my-4"
+        type="submit"
+        value="Login"
+      />
+      <div class="text-center">
+        <span class="text-white"
+          >Still don't have an account ?
+          <a [routerLink]="['/register']" class="text-beige underline">
+            Register here
+          </a></span
+        >
+      </div>
+    </form>
+  </div>
+</div>

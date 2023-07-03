@@ -1,0 +1,113 @@
+/* custom scrollbar */
+::-webkit-scrollbar {
+    height: 20px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #784800;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #FFD19C;
+  }
+
+.card {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    animation: rotate 2s linear infinite;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    animation: rotate 2s linear infinite;
+    animation-delay: -1s;
+    
+}
+
+.card div {
+  position: absolute;
+  inset: 10px;
+  border-radius: 16px;
+  background-color: #000000;
+  z-index: 2;
+  color: white;
+}
+
+//Common anim
+.common::before {
+  background-image: conic-gradient( transparent,transparent,transparent,#DCDCDC);
+}
+.common::after {
+  background-image: conic-gradient(transparent, transparent,transparent,#DCDCDC);
+}
+
+//Uncommon anim
+.uncommon::before {
+  background-image: conic-gradient(transparent,transparent,transparent,#03BB09);
+}
+.uncommon::after {
+  background-image: conic-gradient(transparent,transparent,transparent,#03BB09);
+}
+
+//Rare anim
+.rare::before {
+  background-image: conic-gradient(transparent,transparent,transparent,#15B1C6);
+}
+.rare::after {
+  background-image: conic-gradient(transparent,transparent,transparent,#15B1C6);
+}
+
+//Epic anim
+.epic::before {
+  background-image: conic-gradient(transparent,transparent,transparent,#782BFF);
+}
+.epic::after {
+  background-image: conic-gradient(transparent,transparent,transparent,#782BFF);
+}
+
+//Legendary anim
+.legendary::before {
+  background-image: conic-gradient(transparent,transparent,transparent,#FF9A03);
+}
+.legendary::after {
+  background-image: conic-gradient(transparent,transparent,transparent,#FF9A03);
+}
+
+//Mythic anim
+.mythic::before {
+  background-image: conic-gradient(transparent,transparent,transparent,#B71508);
+}
+.mythic::after {
+  background-image: conic-gradient(transparent,transparent,transparent,#B71508);
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

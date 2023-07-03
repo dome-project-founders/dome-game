@@ -1,0 +1,28 @@
+<div
+  class="p-4 bg-[#492C00] border-[#A7680A] border-8 border-t-4 w-[60rem] text-center text-white"
+>
+  <div class="text-3xl">Your loot</div>
+  <div mat-dialog-content>
+    <div class="flex">
+      <div *ngFor="let loot of loots" class="h-[25rem] m-8 p-4 text-xl">
+        <div class="card {{ loot.item.rarity }}">
+          <div>
+            <div>
+              {{
+                loot.item.rarity.charAt(0).toUpperCase() +
+                  loot.item.rarity.slice(1)
+              }}
+              <img class="m-auto" src="{{ loot.item.image }}" />
+              {{ loot.item.name }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="text-2xl cursor-pointer" (click)="closeModal()">
+      Click to close
+    </div>
+  </div>
+</div>
